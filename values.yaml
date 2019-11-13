@@ -9,7 +9,7 @@ https: false
 
 # Please enable it for RBAC enabled k8s cluster
 rbac:
-  enabled: false
+  enabled: true
 
 
 # To install nginx, please refer to https://kubernetes.github.io/ingress-nginx/deploy/
@@ -29,9 +29,9 @@ ingress:
   # This property allows for reports up to a certain size to be uploaded to SonarQube
   # nginx.ingress.kubernetes.io/proxy-body-size: "8m"
   hosts:
-    api: test-api.screwdriver.cd
-    ui: test-cd.screwdriver.cd
-    store: test-store.screwdriver.cd
+    api: test-api.screwdriver.shoyoshi
+    ui: test-cd.screwdriver.shoyoshi
+    store: test-store.screwdriver.shoyoshi
   # Enabled singleHost if your api, store, ui are sharing the same host with different path
   singleHost:
     enabled: false
@@ -117,9 +117,9 @@ postgresql:
   # 2. set postgressql enabled to false to prevent creation of postgres as a pod
   # 3. uncomment the line below with your externl postgres server
   # postgresServer: ""
-  postgresUser: "sdUser"
-  postgresPassword: "sdPassword"
-  postgresDatabase: "screwdriver"
+  postgresqlUsername: "sdUser"
+  postgresqlPassword: "sdPassword"
+  postgresqlDatabase: "screwdriver"
   # Specify the TCP port that PostgreSQL should use
   service:
     port: 5432

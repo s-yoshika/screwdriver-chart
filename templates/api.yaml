@@ -17,7 +17,7 @@ spec:
     tier: app
 ---
 # requires service account to be created
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.env }}-sdapi
@@ -130,12 +130,12 @@ spec:
           - name: DATASTORE_SEQUELIZE_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: postgres-password
+                key: postgresql-password
                 name: {{- if .Values.postgresql.enabled }} {{ template "postgresql.fullname" .}} {{- else }} "screwdriver-api-{{ .Values.env }}-secrets" {{- end }}
           - name: DATASTORE_SEQUELIZE_PORT
             value: {{ .Values.postgresql.postgresPort | quote }}
           - name: DATASTORE_SEQUELIZE_USERNAME
-            value: {{ .Values.postgresql.postgresUser | quote }}
+            value: {{ .Values.postgresql.postgresqlUsername | quote }}
           - name: SECRET_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -159,3 +159,19 @@ spec:
           {{- end }}
           - name: SECRET_WHITELIST
             value: '[]'
+            #- name: K8S_MEMORY_MICRO
+            #  value: "1"
+            #- name: K8S_CPU_MICRO
+            #  value: "100m"
+            #- name: K8S_MEMORY_LOW
+            #  value: "2"
+          - name: K8S_CPU_LOW
+            value: "1"
+          - name: K8S_MEMORY_HIGH
+            value: "4"
+          - name: K8S_CPU_HIGH
+            value: "1"
+          - name: ECOSYSTEM_ALLOW_CORS
+            value: '["http://test-admin.screwdriver.shoyoshi"]'
+          - name: SECRET_ADMINS
+            value: '["github:s-yoshika","ghe.corp:shoyoshi"]'
