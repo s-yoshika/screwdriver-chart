@@ -2,8 +2,8 @@
     "github": {
         "plugin": "github",
         "config": {
-            "oauthClientId": "30919e8a7c4d164affbf",
-            "oauthClientSecret": "0b4f2ca8c111d7a77bd3ff466e085385eb352392",
+            "oauthClientId": "{{oauthClientId}}",
+            "oauthClientSecret": "{{oauthClientSecret}}",
             "username": "sd-buildbot",
             "email": "dev-null@screwdriver.cd",
             "secret": "SUPER-SECRET-SIGNING-THING",
